@@ -1,6 +1,6 @@
 {
   "name": "postcss-material-colors",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "PostCSS plugin for generating Material Design 3 color palette as variables",
   "keywords": [
     "postcss",
