@@ -1,4 +1,4 @@
-# ${pluginName}
+# postcss-material-colors
 
 [PostCSS] plugin for generating Material Design 3 color palette as variables.
 
