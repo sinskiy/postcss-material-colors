@@ -1,0 +1,41 @@
+{
+  "name": "postcss-material-colors",
+  "version": "0.0.0",
+  "description": "PostCSS plugin  ",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "postcss-material-colors"
+  ],
+  "scripts": {
+    "unit": "node --test index.test.js",
+    "test": "npm run unit && eslint ."
+  },
+  "author": "sinskiy <sinskiy@proton.me>",
+  "license": "MIT",
+  "repository": " /postcss-material-colors",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "postcss": "^8.4.27"
+  },
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "postcss": "^8.4.27"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ]
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}
