@@ -8,7 +8,7 @@ module.exports = (opts = {}) => {
     postcssPlugin: "postcss-material-colors",
     Root(root, postcss) {
       // Transform CSS AST here
-      console.log(root);
+      root.append(":root { --primary: rgb(255 0 255 / 1) }");
     },
   };
 };
