@@ -6,9 +6,9 @@ module.exports = (opts = {}) => {
 
   return {
     postcssPlugin: "postcss-material-colors",
-    Declaration(decl, postcss) {
-      // The faster way to find Declaration node
-      decl.value = "red";
+    Root(root, postcss) {
+      // Transform CSS AST here
+      console.log(root);
     },
   };
 };
