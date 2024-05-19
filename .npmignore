@@ -1,6 +1,7 @@
 yarn-error.log
 npm-debug.log
 package-lock.json
+pnpm-lock.yaml
 yarn.lock
 
 *.test.js
