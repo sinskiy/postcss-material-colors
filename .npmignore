@@ -6,5 +6,6 @@ yarn.lock
 
 *.test.js
 .github
-.editorconfig
+.prettierrc
+.prettierignore
 coverage/
