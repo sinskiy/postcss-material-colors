@@ -2,8 +2,8 @@ import tailwindThemeFromColor from "./lib/tailwindThemeFromColor.js";
 
 /**
  * @type {import('postcss').PluginCreator}
- * @param {Record<string, string>} colorsMap
- * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} [scheme="content"]
+ * @param {Record<string, string>} colorsMap primary is required; secondary, tertiary and other named colors are optional
+ * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} [scheme="content"] methods of creating a color pallete
  * @param {number} [contrast=0]
  */
 export default (colorsMap, scheme = "content", contrast = 0) => {
