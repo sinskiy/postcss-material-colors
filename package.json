@@ -8,10 +8,6 @@
     "postcss-plugin",
     "postcss-material-colors"
   ],
-  "scripts": {
-    "unit": "node --test index.test.js",
-    "test": "npm run unit && eslint ."
-  },
   "author": "sinskiy <sinskiy@proton.me>",
   "license": "MIT",
   "repository": "github:sinskiy/postcss-material-colors",
@@ -23,8 +19,6 @@
     "postcss": "^8.4.38"
   },
   "devDependencies": {
-    "@eslint/js": "^9.3.0",
-    "eslint": "^9.3.0",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5"
   },
