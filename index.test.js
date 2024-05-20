@@ -14,6 +14,6 @@ async function run(input, output, opts = {}) {
 
 test("does something", async () => {
   const input = "a {}";
-  const output = input + ":root { --primary: rgb(255 0 255 / 1) }";
+  const output = input + ":root { --on-primary: #FF0000 }";
   await run(input, output);
 });
