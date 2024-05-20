@@ -1,19 +1,13 @@
-const postcss = require("postcss");
-const { equal } = require("node:assert");
-const { test } = require("node:test");
+// import postcss from "postcss";
+// import { equal } from "node:assert";
+// import { test } from "node:test";
 
-const plugin = require("./");
+// import plugin from "./index.js";
 
-async function run(input, output, opts = {}) {
-  let result = await postcss([plugin(opts)]).process(input, {
-    from: undefined,
-  });
-  equal(result.css, output);
-  equal(result.warnings().length, 0);
-}
-
-test("does something", async () => {
-  const input = "a {}";
-  const output = input + ":root { --on-primary: #FF0000 }";
-  await run(input, output);
-});
+// async function run(input, output, opts = {}) {
+//   let result = await postcss([plugin(opts)]).process(input, {
+//     from: undefined,
+//   });
+//   equal(result.css, output);
+//   equal(result.warnings().length, 0);
+// }

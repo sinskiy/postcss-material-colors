@@ -1,11 +1,11 @@
+import tailwindThemeFromColor from "./lib/tailwindThemeFromColor.js";
+
 /**
  * @type {import('postcss').PluginCreator}
  */
-module.exports = (/* opts = {} */) => {
+export default (/* opts = {} */) => {
   // Work with options here
-  const theme = {
-    "on-primary": "#FF0000",
-  };
+  const theme = tailwindThemeFromColor({ primary: "#FF0000" }, "tonalSpot");
   const themeAsVariables = Object.entries(theme).map(
     ([name, DynamicColor]) => `--${name}: ${DynamicColor}`,
   );
@@ -21,4 +21,4 @@ module.exports = (/* opts = {} */) => {
   };
 };
 
-module.exports.postcss = true;
+export const postcss = true;

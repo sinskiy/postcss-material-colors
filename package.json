@@ -15,6 +15,7 @@
   "author": "sinskiy <sinskiy@proton.me>",
   "license": "MIT",
   "repository": "github:sinskiy/postcss-material-colors",
+  "type": "module",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -27,5 +28,8 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5"
   },
-  "packageManager": "pnpm@9.1.1+sha1.09ada6cd05003e0ced25fb716f9fda4063ec2e3b"
+  "packageManager": "pnpm@9.1.1+sha1.09ada6cd05003e0ced25fb716f9fda4063ec2e3b",
+  "dependencies": {
+    "@material/material-color-utilities": "^0.2.7"
+  }
 }
