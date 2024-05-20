@@ -4,12 +4,11 @@ import tailwindThemeFromColor from "./lib/tailwindThemeFromColor.js";
  * @type {import('postcss').PluginCreator}
  * @param {Object} opts
  * @param {Record<string, string>} opts.colorsMap
- * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} opts.scheme
- * @param {number} opts.contrast
+ * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} [opts.scheme="content"]
+ * @param {number} [opts.contrast=0]
  */
-export default (opts = {}) => {
-  // Work with options here
-  const theme = tailwindThemeFromColor(opts);
+export default ({ colorsMap, scheme, contrast }) => {
+  const theme = tailwindThemeFromColor(colorsMap, scheme, contrast);
   const themeAsVariables = Object.entries(theme).map(
     ([name, DynamicColor]) => `--${name}: ${DynamicColor}`,
   );
@@ -19,7 +18,6 @@ export default (opts = {}) => {
   return {
     postcssPlugin: "postcss-material-colors",
     Root(root) {
-      // Transform CSS AST here
       root.append(themeAtCSSRoot);
     },
   };
