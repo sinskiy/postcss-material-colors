@@ -2,6 +2,10 @@ import tailwindThemeFromColor from "./lib/tailwindThemeFromColor.js";
 
 /**
  * @type {import('postcss').PluginCreator}
+ * @param {Object} opts
+ * @param {Record<string, string>} opts.colorsMap
+ * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} opts.scheme
+ * @param {number} opts.contrast
  */
 export default (opts = {}) => {
   // Work with options here
