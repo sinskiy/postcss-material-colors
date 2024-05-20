@@ -1,12 +1,11 @@
 /**
  * @type {import('postcss').PluginCreator}
  */
-module.exports = (opts = {}) => {
+module.exports = (/* opts = {} */) => {
   // Work with options here
-
   return {
     postcssPlugin: "postcss-material-colors",
-    Root(root, postcss) {
+    Root(root) {
       // Transform CSS AST here
       root.append(":root { --primary: rgb(255 0 255 / 1) }");
     },

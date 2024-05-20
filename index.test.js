@@ -12,10 +12,8 @@ async function run(input, output, opts = {}) {
   equal(result.warnings().length, 0);
 }
 
-/* Write tests here
-
-test('does something', async () => {
-  await run('a{ }', 'a{ }', { })
-})
-
-*/
+test("does something", async () => {
+  const input = "a {}";
+  const output = input + ":root { --primary: rgb(255 0 255 / 1) }";
+  await run(input, output);
+});

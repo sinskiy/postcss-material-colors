@@ -22,21 +22,10 @@
     "postcss": "^8.4.38"
   },
   "devDependencies": {
+    "@eslint/js": "^9.3.0",
     "eslint": "^9.3.0",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5"
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 2017
-    },
-    "env": {
-      "node": true,
-      "es6": true
-    },
-    "extends": [
-      "eslint:recommended"
-    ]
   },
   "packageManager": "pnpm@9.1.1+sha1.09ada6cd05003e0ced25fb716f9fda4063ec2e3b"
 }
