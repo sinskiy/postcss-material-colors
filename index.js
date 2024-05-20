@@ -7,7 +7,7 @@ import tailwindThemeFromColor from "./lib/tailwindThemeFromColor.js";
  * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} [opts.scheme="content"]
  * @param {number} [opts.contrast=0]
  */
-export default ({ colorsMap, scheme, contrast }) => {
+export default ({ colorsMap, scheme = "content", contrast = 0 }) => {
   const theme = tailwindThemeFromColor(colorsMap, scheme, contrast);
   const themeAsVariables = Object.entries(theme).map(
     ([name, DynamicColor]) => `--${name}: ${DynamicColor}`,
