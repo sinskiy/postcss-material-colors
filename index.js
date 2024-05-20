@@ -2,12 +2,11 @@ import tailwindThemeFromColor from "./lib/tailwindThemeFromColor.js";
 
 /**
  * @type {import('postcss').PluginCreator}
- * @param {Object} opts
- * @param {Record<string, string>} opts.colorsMap
- * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} [opts.scheme="content"]
- * @param {number} [opts.contrast=0]
+ * @param {Record<string, string>} colorsMap
+ * @param {"content" | "experssive" | "fidelity" | "monochrome" | "neutral" | "tonalSpot" | "vibrant"} [scheme="content"]
+ * @param {number} [contrast=0]
  */
-export default ({ colorsMap, scheme = "content", contrast = 0 }) => {
+export default (colorsMap, scheme = "content", contrast = 0) => {
   const theme = tailwindThemeFromColor(colorsMap, scheme, contrast);
   const themeAsVariables = Object.entries(theme).map(
     ([name, DynamicColor]) => `--${name}: ${DynamicColor}`,
