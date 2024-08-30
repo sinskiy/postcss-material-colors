@@ -15,8 +15,7 @@ import {
   SchemeVibrant,
 } from "@material/material-color-utilities";
 
-// TODO: rename
-const themeColors = Object.getOwnPropertyNames(MaterialDynamicColors)
+const themeColorNames = Object.getOwnPropertyNames(MaterialDynamicColors)
   .filter((prop) => MaterialDynamicColors[prop] instanceof DynamicColor)
   .filter((prop) => !prop.includes("PaletteKeyColor"));
 
@@ -38,7 +37,7 @@ export function getTheme(primary, variant = "tonalSpot", contrast = 0.0) {
   const [lightScheme, darkScheme] = getSchemes(source, Scheme, contrast);
 
   const colors = {};
-  for (const color of themeColors) {
+  for (const color of themeColorNames) {
     const Color = MaterialDynamicColors[color];
 
     const light = getHex(lightScheme, Color);
@@ -51,12 +50,6 @@ export function getTheme(primary, variant = "tonalSpot", contrast = 0.0) {
   return colors;
 }
 
-function hctFromHex(hex) {
-  const argb = argbFromHex(hex);
-  const hct = Hct.fromInt(argb);
-  return hct;
-}
-
 function getSchemes(source, Scheme, contrast) {
   const lightScheme = new Scheme(source, false, contrast);
   const darkScheme = new Scheme(source, true, contrast);
@@ -67,4 +60,10 @@ function getHex(scheme, Color) {
   const argb = Color.getArgb(scheme);
   const hex = hexFromArgb(argb);
   return hex;
+}
+
+function hctFromHex(hex) {
+  const argb = argbFromHex(hex);
+  const hct = Hct.fromInt(argb);
+  return hct;
 }
