@@ -43,8 +43,9 @@ export function getTheme(primary, variant = "tonalSpot", contrast = 0.0) {
     const light = getHex(lightScheme, Color);
     const dark = getHex(darkScheme, Color);
 
-    colors[`${color}-light`] = light;
-    colors[`${color}-dark`] = dark;
+    const colorName = kebabize(color);
+    colors[`${colorName}-light`] = light;
+    colors[`${colorName}-dark`] = dark;
   }
 
   return colors;
@@ -66,4 +67,8 @@ function hctFromHex(hex) {
   const argb = argbFromHex(hex);
   const hct = Hct.fromInt(argb);
   return hct;
+}
+
+function kebabize(string) {
+  return string.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
