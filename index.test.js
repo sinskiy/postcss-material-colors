@@ -4,8 +4,8 @@ import { test } from "node:test";
 
 import plugin from "./index.js";
 
-async function run(input, output, opts = {}) {
-  let result = await postcss([plugin(opts)]).process(input, {
+async function run(input, output, ...opts) {
+  let result = await postcss([plugin(...opts)]).process(input, {
     from: undefined,
   });
   equal(result.css, output);
@@ -13,5 +13,5 @@ async function run(input, output, opts = {}) {
 }
 
 test("does something", async () => {
-  await run("a{ }", "a{ }", {});
+  await run("a{ }", "a{ }", "#ff0000");
 });
