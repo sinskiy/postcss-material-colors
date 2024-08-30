@@ -8,6 +8,7 @@
     "postcss-plugin",
     "postcss-material-colors"
   ],
+  "type": "module",
   "scripts": {
     "unit": "node --test index.test.js",
     "test": "npm run unit && eslint ."
@@ -27,7 +28,8 @@
   },
   "eslintConfig": {
     "parserOptions": {
-      "ecmaVersion": 2017
+      "ecmaVersion": 2017,
+      "sourceType": "module"
     },
     "env": {
       "node": true,
