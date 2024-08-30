@@ -18,7 +18,7 @@ const plugin = (...args) => {
         root.first.append(colorDeclaration);
       }
 
-      root.append({ name: "media", params: "(color-scheme: dark)" });
+      root.append({ name: "media", params: "(prefers-color-scheme: dark)" });
       root.last.append({ selector: ":root" });
       for (const colorName in dark) {
         const colorDeclaration = new Declaration({
