@@ -9,6 +9,7 @@
     "postcss-material-colors"
   ],
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "unit": "node --test index.test.js",
     "test": "npm run unit && eslint ."
