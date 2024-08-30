@@ -36,7 +36,7 @@ const colors = {
   dark: {},
 };
 
-export function getTheme(primary, variant = "tonalSpot", contrast = 0.0) {
+export function getTheme({ primary, variant = "tonalSpot", contrast = 0.0 }) {
   const source = hctFromHex(primary);
   const Scheme = themeVariants[variant];
 
