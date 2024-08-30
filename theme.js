@@ -1,5 +1,7 @@
 import {
+  argbFromHex,
   DynamicColor,
+  Hct,
   MaterialDynamicColors,
   SchemeContent,
   SchemeExpressive,
@@ -12,11 +14,11 @@ import {
   SchemeVibrant,
 } from "@material/material-color-utilities";
 
-export const themeColors = Object.getOwnPropertyNames(MaterialDynamicColors)
+const themeColors = Object.getOwnPropertyNames(MaterialDynamicColors)
   .filter((prop) => MaterialDynamicColors[prop] instanceof DynamicColor)
   .filter((prop) => !prop.includes("PaletteKeyColor"));
 
-export const themeVariants = {
+const themeVariants = {
   content: SchemeContent,
   expressive: SchemeExpressive,
   fidelity: SchemeFidelity,
@@ -27,3 +29,21 @@ export const themeVariants = {
   tonalSpot: SchemeTonalSpot,
   vibrant: SchemeVibrant,
 };
+
+export function getTheme(primary, variant = "tonalSpot", contrast = 0.0) {
+  const source = hctFromHex(primary);
+  const Scheme = themeVariants[variant];
+  const [lightScheme, darkScheme] = getSchemes(source, Scheme, contrast);
+}
+
+function getSchemes(source, Scheme, contrast) {
+  const lightScheme = new Scheme(source, false, contrast);
+  const darkScheme = new Scheme(source, true, contrast);
+  return [lightScheme, darkScheme];
+}
+
+function hctFromHex(hex) {
+  const argb = argbFromHex(hex);
+  const hct = Hct.fromInt(argb);
+  return hct;
+}
