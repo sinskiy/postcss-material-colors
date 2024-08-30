@@ -3,7 +3,7 @@ import { getTheme } from "./theme.js";
 /**
  * @type {import('postcss').PluginCreator}
  */
-export default (...args) => {
+const plugin = (...args) => {
   const { light, dark } = getTheme(...args);
   return {
     postcssPlugin: "postcss-material-colors",
@@ -30,5 +30,6 @@ export default (...args) => {
     },
   };
 };
+export default plugin;
 
 export const postcss = true;
