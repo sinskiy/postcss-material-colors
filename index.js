@@ -12,10 +12,20 @@ export default (...args) => {
 
       for (const colorName in light) {
         const colorDeclaration = new Declaration({
-          prop: colorName,
+          prop: "--" + colorName,
           value: light[colorName],
         });
         root.first.append(colorDeclaration);
+      }
+
+      root.append({ name: "media", params: "(color-scheme: dark)" });
+      root.last.append({ selector: ":root" });
+      for (const colorName in dark) {
+        const colorDeclaration = new Declaration({
+          prop: "--" + colorName,
+          value: dark[colorName],
+        });
+        root.last.first.append(colorDeclaration);
       }
     },
   };
