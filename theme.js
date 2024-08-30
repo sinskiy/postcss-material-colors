@@ -31,22 +31,18 @@ const themeVariants = {
   vibrant: SchemeVibrant,
 };
 
+const colors = {
+  light: {},
+  dark: {},
+};
+
 export function getTheme(primary, variant = "tonalSpot", contrast = 0.0) {
   const source = hctFromHex(primary);
   const Scheme = themeVariants[variant];
+
   const [lightScheme, darkScheme] = getSchemes(source, Scheme, contrast);
 
-  const colors = {};
-  for (const color of themeColorNames) {
-    const Color = MaterialDynamicColors[color];
-
-    const light = getHex(lightScheme, Color);
-    const dark = getHex(darkScheme, Color);
-
-    const colorName = kebabize(color);
-    colors[`${colorName}-light`] = light;
-    colors[`${colorName}-dark`] = dark;
-  }
+  populateColors(lightScheme, darkScheme);
 
   return colors;
 }
@@ -55,6 +51,19 @@ function getSchemes(source, Scheme, contrast) {
   const lightScheme = new Scheme(source, false, contrast);
   const darkScheme = new Scheme(source, true, contrast);
   return [lightScheme, darkScheme];
+}
+
+function populateColors(lightScheme, darkScheme) {
+  for (const color of themeColorNames) {
+    const Color = MaterialDynamicColors[color];
+
+    const light = getHex(lightScheme, Color);
+    const dark = getHex(darkScheme, Color);
+
+    const colorName = kebabize(color);
+    colors.light[colorName] = light;
+    colors.dark[colorName] = dark;
+  }
 }
 
 function getHex(scheme, Color) {
