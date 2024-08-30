@@ -16,7 +16,10 @@
   },
   "author": "sinskiy <sinskiy@proton.me>",
   "license": "MIT",
-  "repository": "github:sinskiy//postcss-material-colors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinskiy//postcss-material-colors.git"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
