@@ -1,4 +1,4 @@
-import materialColors from "./theme.js";
+import { themeColors, themeVariants } from "./theme.js";
 
 /**
  * @type {import('postcss').PluginCreator}
@@ -7,7 +7,7 @@ export default (opts = {}) => {
   return {
     postcssPlugin: "postcss-material-colors",
     Once(root) {
-      console.log(materialColors);
+      console.log(themeColors, themeVariants);
     },
   };
 };
