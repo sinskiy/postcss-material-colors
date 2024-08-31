@@ -63,8 +63,9 @@ function getOpts(root) {
       }
       atRuleOpts[key] = value;
     }
-  });
 
+    rule.remove();
+  });
   return atRuleOpts;
 }
 
