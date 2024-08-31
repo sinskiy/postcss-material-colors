@@ -17,7 +17,7 @@ import theme from "postcss-material-colors"
 
 ...
   plugins: [
-    theme(),
+    theme({ darkModeStragety: "class" /* "class" | "data" | "media" */ }),
     ...
   ],
 ...
@@ -34,5 +34,4 @@ import theme from "postcss-material-colors"
 ## soon
 
 - extra colors
-- dark mode support for .dark
 - typescript
