@@ -7,9 +7,12 @@ const plugin = () => {
   return {
     postcssPlugin: "postcss-material-colors",
     Once(root, { Declaration }) {
+      let optsTouched = false;
       const atRuleOpts = {};
 
       root.walkAtRules("postcss-material-colors", (rule) => {
+        optsTouched = true;
+
         const opts = rule.params.slice(1, -1).split(",");
         if (!opts.length) {
           throw new Error("You must provide at least primary color");
@@ -24,10 +27,11 @@ const plugin = () => {
         }
       });
 
+      if (!optsTouched) return;
+
       const { light, dark } = getTheme(atRuleOpts);
 
       root.prepend({ selector: ":root" });
-
       for (const colorName in light) {
         const colorDeclaration = new Declaration({
           prop: "--" + colorName,
