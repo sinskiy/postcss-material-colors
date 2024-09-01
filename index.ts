@@ -80,7 +80,7 @@ function getOpts(root: Root) {
         );
       }
       // I have no idea why this doesn't work without any
-      atRuleOpts[key] = value as any;
+      atRuleOpts[key] = key === "contrast" ? Number(value) : (value as any);
     }
 
     rule.remove();
