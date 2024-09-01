@@ -9,7 +9,11 @@
     "postcss-material-colors"
   ],
   "type": "module",
-  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "unit": "node --test index.test.js",
     "test": "npm run unit && eslint .",
