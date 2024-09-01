@@ -1,5 +1,7 @@
 import {
   argbFromHex,
+  ColorGroup,
+  customColor,
   DynamicColor,
   DynamicScheme,
   Hct,
@@ -14,6 +16,7 @@ import {
   SchemeRainbow,
   SchemeTonalSpot,
   SchemeVibrant,
+  Theme,
 } from "@material/material-color-utilities";
 
 export type ValueOf<T> = T[keyof T];
@@ -31,10 +34,18 @@ export interface ThemeOptions {
   primary: string;
   variant?: keyof typeof themeVariants;
   contrast?: number;
+  extraColors?: Record<string, string>;
 }
 
 // adds ability to check if a key is in themeOptions
-export const themeOptions = { primary: "", variant: "", contrast: 0 } as const;
+export const themeOptions = {
+  primary: "",
+  variant: "",
+  contrast: 0,
+  extraColors: {
+    example: "",
+  },
+} as const;
 
 const themeColorNames = Object.getOwnPropertyNames(MaterialDynamicColors)
   // @ts-ignore I don't know how to fix this
@@ -62,13 +73,17 @@ export function getTheme({
   primary,
   variant = "tonalSpot",
   contrast = 0.0,
+  extraColors,
 }: ThemeOptions) {
   const source = hctFromHex(primary);
   const Scheme = themeVariants[variant];
 
   const [lightScheme, darkScheme] = getSchemes(source, Scheme, contrast);
 
-  populateColors(lightScheme, darkScheme);
+  populateColorsByPrimary(lightScheme, darkScheme);
+  if (extraColors) {
+    populateExtraColors(argbFromHex(primary), extraColors);
+  }
 
   return colors;
 }
@@ -83,7 +98,10 @@ function getSchemes(
   return [lightScheme, darkScheme];
 }
 
-function populateColors(lightScheme: DynamicScheme, darkScheme: DynamicScheme) {
+function populateColorsByPrimary(
+  lightScheme: DynamicScheme,
+  darkScheme: DynamicScheme
+) {
   for (const color of themeColorNames) {
     // @ts-ignore I don't know how to fix this
     const Color = MaterialDynamicColors[color];
@@ -95,6 +113,36 @@ function populateColors(lightScheme: DynamicScheme, darkScheme: DynamicScheme) {
     colors.light[colorName] = light;
     colors.dark[colorName] = dark;
   }
+}
+
+function populateExtraColors(
+  primaryArgb: number,
+  extraColors: Record<string, string>
+) {
+  for (const colorName in extraColors) {
+    const color = extraColors[colorName];
+    const { light, dark } = customColor(primaryArgb, {
+      name: colorName,
+      value: argbFromHex(color),
+      blend: true,
+    });
+    const schemeName = kebabize(colorName);
+    populateExtraColorTheme("light", light, schemeName);
+    populateExtraColorTheme("dark", dark, schemeName);
+  }
+}
+
+function populateExtraColorTheme(
+  theme: "light" | "dark",
+  scheme: ColorGroup,
+  schemeName: string
+) {
+  colors[theme][schemeName] = hexFromArgb(scheme.color);
+  colors[theme][`on-${schemeName}`] = hexFromArgb(scheme.onColor);
+  colors[theme][`${schemeName}-container`] = hexFromArgb(scheme.colorContainer);
+  colors[theme][`on-${schemeName}-container`] = hexFromArgb(
+    scheme.onColorContainer
+  );
 }
 
 function getHex(scheme: DynamicScheme, Color: DynamicColor) {
