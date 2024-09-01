@@ -12,7 +12,8 @@
   "main": "index.js",
   "scripts": {
     "unit": "node --test index.test.js",
-    "test": "npm run unit && eslint ."
+    "test": "npm run unit && eslint .",
+    "prepublishOnly": "tsc"
   },
   "author": "sinskiy <sinskiy@proton.me>",
   "license": "MIT",
