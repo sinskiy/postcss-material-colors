@@ -61,23 +61,27 @@ function getOpts(root: Root) {
   const atRuleOpts: Partial<ThemeOptions> = {};
 
   root.walkAtRules("postcss-material-colors", (rule) => {
-    const opts: Record<string, string> = JSON.parse(rule.params.slice(1, -1));
-    if (isEmpty(opts)) {
+    const opts = rule.params.slice(1, -1).split(", ");
+    if (!opts.length) {
       throw new Error("You must provide at least primary color");
     }
 
-    for (const opt in opts) {
-      if (!isInThemeOptions(opt)) {
+    for (const opt of opts) {
+      const [key, value] = opt.split(":").map((value) => value.trim());
+      if (!key || !value) {
         throw new Error(
-          "Key is not found in theme options: " +
-            Object.keys(themeOptions).join(", ")
+          'You must provode both a key and a value, separated by ":". Options must be separated by ",". Spaces are trimmed'
         );
       }
 
-      const value = opts[opt];
-
-      // I have no idea why this doesn't work without any
-      atRuleOpts[opt] = value as any;
+      if (!isInThemeOptions(key)) {
+        atRuleOpts.extraColors![key] = value;
+      } else if (key === "contrast") {
+        atRuleOpts[key] = parseFloat(value);
+      } else {
+        // I have no idea why this doesn't work without any
+        atRuleOpts[key] = value as any;
+      }
     }
 
     rule.remove();

@@ -34,7 +34,7 @@ export interface ThemeOptions {
   primary: string;
   variant?: keyof typeof themeVariants;
   contrast?: number;
-  extraColors?: Record<string, string>;
+  extraColors: Record<string, string>;
 }
 
 // adds ability to check if a key is in themeOptions
@@ -42,9 +42,7 @@ export const themeOptions = {
   primary: "",
   variant: "",
   contrast: 0,
-  extraColors: {
-    example: "",
-  },
+  extraColors: {},
 } as const;
 
 const themeColorNames = Object.getOwnPropertyNames(MaterialDynamicColors)

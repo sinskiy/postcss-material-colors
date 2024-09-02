@@ -27,11 +27,14 @@ import theme from "postcss-material-colors"
 
 ```css
 /* defaults for variant and contrast are shown */
-@postcss-material-colors (primary: #ff0000, variant: tonalSpot, contrast: 0.0);
+@postcss-material-colors (primary: #ff0000, variant: tonalSpot, contrast: 0.0, green: #00ff00); /* add any extra colors you want */
 ```
 
 <details>
 <summary>types for args</summary>
+
+> [!WARNING]
+> actual types look different
 
 ```ts
 export interface ThemeOptions {
@@ -47,6 +50,7 @@ export interface ThemeOptions {
     | "tonalSpot"
     | "vibrant";
   contrast?: number; // between -1.0 and 1.0
+  [key: string]: string; // hex (extra colors)
 }
 ```
 
