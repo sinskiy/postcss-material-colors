@@ -57,7 +57,3 @@ export interface ThemeOptions {
 </details>
 
 [More about args](https://github.com/material-foundation/material-color-utilities/blob/main/dev_guide/creating_color_scheme.md)
-
-## soon
-
-- extra colors
