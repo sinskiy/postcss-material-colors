@@ -58,7 +58,11 @@ creator.postcss = true;
 export default creator;
 
 function getOpts(root: Root) {
-  const atRuleOpts: Partial<ThemeOptions> = {};
+  const atRuleOpts: Partial<ThemeOptions> & {
+    extraColors: Record<string, string>;
+  } = {
+    extraColors: {},
+  };
 
   root.walkAtRules("postcss-material-colors", (rule) => {
     const opts = rule.params.slice(1, -1).split(", ");
@@ -75,7 +79,7 @@ function getOpts(root: Root) {
       }
 
       if (!isInThemeOptions(key)) {
-        atRuleOpts.extraColors![key] = value;
+        atRuleOpts.extraColors[key] = value;
       } else if (key === "contrast") {
         atRuleOpts[key] = parseFloat(value);
       } else {
