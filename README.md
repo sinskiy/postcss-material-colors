@@ -33,9 +33,6 @@ import theme from "postcss-material-colors"
 <details>
 <summary>types for args</summary>
 
-> [!WARNING]
-> actual types look different
-
 ```ts
 export interface ThemeOptions {
   primary: string; // hex
@@ -55,5 +52,8 @@ export interface ThemeOptions {
 ```
 
 </details>
+
+> [!WARNING]
+> actual types look different
 
 [More about args](https://github.com/material-foundation/material-color-utilities/blob/main/dev_guide/creating_color_scheme.md)
